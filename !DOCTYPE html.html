@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Online Event Registration</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white py-6 shadow-lg">
+    <h1 class="text-4xl font-bold text-center">
+      Online Event Registration System
+    </h1>
+  </header>
+
+  <!-- Main Container -->
+  <div class="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8">
+
+    <!-- Registration Form -->
+    <div class="bg-white p-8 rounded-2xl shadow-lg">
+
+      <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">
+        Event Registration Form
+      </h2>
+
+      <form id="registrationForm" class="space-y-4">
+
+        <input
+          type="text"
+          id="name"
+          placeholder="Full Name"
+          class="w-full p-3 border rounded-xl"
+          required
+        >
+
+        <input
+          type="email"
+          id="email"
+          placeholder="Email Address"
+          class="w-full p-3 border rounded-xl"
+          required
+        >
+
+        <input
+          type="tel"
+          id="phone"
+          placeholder="Phone Number"
+          class="w-full p-3 border rounded-xl"
+          required
+        >
+
+        <select
+          id="event"
+          class="w-full p-3 border rounded-xl"
+          required
+        >
+          <option value="">Select Event</option>
+          <option>Tech Conference</option>
+          <option>Workshop</option>
+          <option>Cultural Fest</option>
+        </select>
+
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700"
+        >
+          Register
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="bg-white p-8 rounded-2xl shadow-lg">
+
+      <h2 class="text-2xl font-bold mb-6 text-center text-green-600">
+        Admin Panel
+      </h2>
+
+      <div class="overflow-x-auto">
+
+        <table class="w-full border-collapse border border-gray-300">
+
+          <thead class="bg-gray-200">
+
+            <tr>
+              <th class="border p-3">Name</th>
+              <th class="border p-3">Email</th>
+              <th class="border p-3">Phone</th>
+              <th class="border p-3">Event</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="adminTable">
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-4 mt-10">
+    © 2026 Online Event Registration System
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+
+    // Get form and table
+    const form = document.getElementById("registrationForm");
+    const adminTable = document.getElementById("adminTable");
+
+    // Form Submit Event
+    form.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      // Get values
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const eventName = document.getElementById("event").value;
+
+      // Create new table row
+      const row = `
+        <tr class="text-center">
+          <td class="border p-2">${name}</td>
+          <td class="border p-2">${email}</td>
+          <td class="border p-2">${phone}</td>
+          <td class="border p-2">${eventName}</td>
+        </tr>
+      `;
+
+      // Add row to table
+      adminTable.innerHTML += row;
+
+      // Reset form
+      form.reset();
+
+      // Success Message
+      alert("Registration Successful!");
+
+    });
+
+  </script>
+
+</body>
+</html>
